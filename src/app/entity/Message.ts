@@ -1,4 +1,7 @@
-class Message{
+import {User} from "./User";
+import {Conversation} from "./conversation";
+
+export class Message{
   id: number;
   sentAt: Date;
   msg: string;

@@ -1,1 +1,41 @@
-<p>register works!</p>
+<!-- register form -->
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="m-5">
+  <div class="input-group mb-3">
+    <label for="firstname" class="input-group-text">Nom: </label>
+    <input id="firstname" type="text" formControlName="firstname" class="form-control">
+  </div>
+
+  <div class="input-group mb-3">
+    <label for="lastname" class="input-group-text">Prénom: </label>
+    <input id="lastname" type="text" formControlName="lastname" class="form-control">
+  </div>
+
+  <div class="input-group mb-3">
+    <label for="pseudo" class="input-group-text">Pseudo: </label>
+    <input id="pseudo" type="text" formControlName="pseudo" class="form-control">
+  </div>
+
+  <div class="input-group mb-3">
+    <label for="email" class="input-group-text">E-mail: </label>
+    <input id="email" type="email" formControlName="email" class="form-control">
+  </div>
+
+  <div class="input-group mb-3">
+    <label for="civility" class="input-group-text">Civilité: </label>
+    <select  id="civility" type="text" formControlName="civility" class="form-control">
+      <option *ngFor="let civility of civilities" value="{{ civility.id }}">{{ civility.name }}</option>
+    </select>
+  </div>
+
+  <div class="input-group mb-3">
+    <label for="birthAt" class="input-group-text">Date de naissance: </label>
+    <input id="birthAt" type="date" formControlName="birthAt" class="form-control">
+  </div>
+
+  <div class="input-group mb-3">
+    <label for="password" class="input-group-text">Mot de passe: </label>
+    <input id="password" type="password" formControlName="password" class="form-control">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Valider</button>
+</form>

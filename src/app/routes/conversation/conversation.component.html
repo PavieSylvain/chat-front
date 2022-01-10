@@ -1,1 +1,43 @@
-<p>conversation works!</p>
+<h2 class="text-center text-primary m-2">{{ oConversation.name }}</h2>
+<!-- users list for this conversation -->
+<div class="w-25 float-left border border-dark border-1 bg-info">
+  <ul>
+    <li class="list-unstyled text-white" *ngFor="let user of oConversation.users">{{ user }}</li>
+  </ul>
+</div>
+
+<!-- messages list for conversation -->
+<div *ngFor="let message of oConversation.messages" class="w-75 float-right">
+    <div *ngIf="message.userPseudo == user.pseudo; then thenBlock else elseBlock"></div>
+    <!-- block for user's messages -->
+    <ng-template #thenBlock>
+      <div class="border border-dark border-1 w-75 p-1 ml-auto mr-2 mb-2 bg-success">
+        <div class="d-flex bg-light">
+          <p class="w-50 pl-4 text-primary">{{ message.userPseudo }}</p>
+          <p class="w-50 text-danger">{{ message.sentAt.timestamp * 1000 | date :'medium' : message.sentAt.timezone.name }}</p>
+        </div>
+        <p class="text-white p-2">{{ message.msg }}</p>
+      </div>
+    </ng-template>
+    <!-- block for other user's messages -->
+    <ng-template #elseBlock>
+      <div *ngIf="message.userPseudo != user.pseudo " class="border border-dark border-1 w-75 p-1 ml-2 mb-2 bg-primary" >
+        <div class="d-flex bg-light">
+          <p class="w-50 pl-4 text-primary">{{ message.userPseudo }}</p>
+          <p class="w-50 text-danger">{{ message.sentAt.timestamp * 1000 | date :'medium' : message.sentAt.timezone.name }}</p>
+        </div>
+        <p class="text-white p-2">{{ message.msg }}</p>
+      </div>
+    </ng-template>
+</div>
+
+<!-- form to add message -->
+<form [formGroup]="msgForm" (ngSubmit)="onSubmit()" class="m-5 w-75 float-right">
+  <div class="input-group mb-3">
+    <label for="msg" class="input-group-text">Votre Message: </label>
+    <textarea id="msg" formControlName="msg" class="w-75 p-3" rows="7"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Répondre</button>
+</form>
+
+

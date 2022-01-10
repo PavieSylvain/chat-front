@@ -1,1 +1,10 @@
-<p>home works!</p>
+<h2 class="text-center m-3 text-primary">Bonjour {{ oUser.pseudo }}</h2>
+
+<div class="text-center mb-3"><a [routerLink]="['new-conversation']" class="bg-black"><button class="btn btn-primary">Nouvelle conversation</button></a></div>
+
+<div class="mt-3" *ngFor="let conversation of lConversations">
+  <a class="" [routerLink]="['conversation', conversation.id]">
+    <span class="text-secondary m-5">{{ conversation.lastUpdatedAt.timestamp * 1000 | date :'medium' : conversation.lastUpdatedAt.timezone.name }}</span>
+    <span>{{ conversation.name }}</span>
+  </a>
+</div>

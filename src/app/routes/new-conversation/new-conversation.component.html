@@ -1,1 +1,25 @@
-<p>new-conversation works!</p>
+<!-- new conversation form -->
+<form [formGroup]="conversationForm" (ngSubmit)="onSubmit()" class="m-auto pt-5 w-50">
+  <div class="input-group mb-3">
+    <label for="name" class="input-group-text">Nom de la conversation: </label>
+    <input id="name" type="name" formControlName="name" class="form-control">
+  </div>
+
+  <div class="input-group mb-3">
+    <label for="pseudo" class="input-group-text">Ajouter une perssonne: </label>
+    <select  id="pseudo" type="text" class="form-control" [(ngModel)]="selectedUser" [ngModelOptions]="{standalone: true}">
+      <option *ngFor="let user of lUsers; let index = index" value="{{ index }}">{{ user.pseudo }}</option>
+    </select>
+    <button class="btn btn-primary" type="button" (click)="addUser()">Ajouter</button>
+  </div>
+  <ul>
+    <div *ngFor="let user of lUsersConversation; let index = index">
+      <li class="list-unstyled border-1 border-dark border w-50 m-auto text-right p-1">
+        <div class="w-75 justify-content-center d-inline-flex">{{ user.pseudo }}</div>
+        <div class="w-25 d-inline-flex justify-content-end"><button class="btn-sm btn-danger" type="button" (click)="removeUser(user, index)">X</button></div>
+      </li>
+    </div>
+  </ul>
+
+  <button type="submit" class="btn btn-primary">Valider</button>
+</form>
