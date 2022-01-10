@@ -14,7 +14,6 @@ import { ConversationComponent } from './routes/conversation/conversation.compon
 
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-import { TestComponent } from './test/test.component';
 registerLocaleData(localeFr);
 
 @NgModule({
@@ -25,7 +24,6 @@ registerLocaleData(localeFr);
     HomeComponent,
     NewConversationComponent,
     ConversationComponent,
-    TestComponent
   ],
     imports: [
         BrowserModule,
